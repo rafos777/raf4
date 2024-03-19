@@ -15,7 +15,7 @@ do
     Console.WriteLine("=====================");
     Console.WriteLine("  1 - Add a new item");
     Console.WriteLine("  2 - Delete an item");
-    Console.WriteLine("  3 - Leave ");
+    Console.WriteLine("  3 - Quit ");
     Console.WriteLine("=====================");
     if (Int32.TryParse(Console.ReadLine(), out userNb))
     {
