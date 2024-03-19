@@ -17,33 +17,35 @@ do
     Console.WriteLine("  2 - Delete an item");
     Console.WriteLine("  3 - Leave ");
     Console.WriteLine("=====================");
-    userNb = Convert.ToInt32(Console.ReadLine());
-    if (userNb == 1)
+    if (Int32.TryParse(Console.ReadLine(), out userNb))
     {
-        Console.WriteLine("What do you want to add?");
-        string userAdd = Console.ReadLine();
-        listeCourses.Add(userAdd);
-    }
-    else if (userNb == 2)
-    {
-        Console.WriteLine("What do you want to remove (index of the item)?");
-        int userDelete;
-
-        if(Int32.TryParse(Console.ReadLine(), out userDelete))
+        if (userNb == 1)
         {
-            if (userDelete <= listeCourses.Count && userDelete > 0)
+            Console.WriteLine("What do you want to add?");
+            string userAdd = Console.ReadLine();
+            listeCourses.Add(userAdd);
+        }
+        else if (userNb == 2)
+        {
+            Console.WriteLine("What do you want to remove (index of the item)?");
+            int userDelete;
+
+            if (Int32.TryParse(Console.ReadLine(), out userDelete))
             {
-                listeCourses.RemoveAt(userDelete - 1);
+                if (userDelete <= listeCourses.Count && userDelete > 0)
+                {
+                    listeCourses.RemoveAt(userDelete - 1);
+                }
             }
         }
         else
         {
-            userNb = 3;
+            Console.WriteLine("Input Error");
         }
     }
     else if (userNb != 3)
     {
         Console.WriteLine("Input Error");
-    }
+    }    
 }
 while (userNb != 3);
