@@ -6,16 +6,16 @@ do
 {
     itemNb = 0;
     Console.WriteLine("=====================");
-    Console.WriteLine("liste de courses: ");
+    Console.WriteLine("   Shopping list : ");
     foreach (var item in listeCourses)
     { 
         itemNb++;
         Console.WriteLine($"{itemNb} - {item}"); 
     }
     Console.WriteLine("=====================");
-    Console.WriteLine("  1 - mettre un nouveau produit");
-    Console.WriteLine("  2 - supprimer un produit");
-    Console.WriteLine("  3 - quitter");
+    Console.WriteLine("  1 - Add a new item");
+    Console.WriteLine("  2 - Delete an item");
+    Console.WriteLine("  3 - Leave ");
     Console.WriteLine("=====================");
     userNb = Convert.ToInt32(Console.ReadLine());
     if (userNb == 1)
@@ -26,9 +26,24 @@ do
     }
     else if (userNb == 2)
     {
-        Console.WriteLine("What do you want to remove (nb of the item)?");
-        int userDelete = Convert.ToInt32(Console.ReadLine());
-        listeCourses.RemoveRange(userDelete-1,1);
+        Console.WriteLine("What do you want to remove (index of the item)?");
+        int userDelete;
+
+        if(Int32.TryParse(Console.ReadLine(), out userDelete))
+        {
+            if (userDelete <= listeCourses.Count && userDelete > 0)
+            {
+                listeCourses.RemoveAt(userDelete - 1);
+            }
+        }
+        else
+        {
+            userNb = 3;
+        }
+    }
+    else if (userNb != 3)
+    {
+        Console.WriteLine("Input Error");
     }
 }
 while (userNb != 3);
